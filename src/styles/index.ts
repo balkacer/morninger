@@ -34,9 +34,9 @@ const GlobalStyle = (schema: ColorSchemeName = "dark", platform = "android") => 
         },
         toolbarRow: {
             width: "100%",
-            height: 150,
+            height: 100,
             paddingBottom: 20,
-            paddingHorizontal: 10,
+            paddingHorizontal: 20,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
@@ -47,7 +47,7 @@ const GlobalStyle = (schema: ColorSchemeName = "dark", platform = "android") => 
             color: theme.colors.title,
             fontSize: 36,
             fontWeight: "bold",
-            marginLeft: 2
+            marginLeft: 2,
         },
         textInput: {
             width: "100%",

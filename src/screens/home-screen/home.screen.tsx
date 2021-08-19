@@ -6,11 +6,11 @@ import { useColorScheme } from "react-native-appearance";
 import GlobalStyle from "styles";
 import { IconTypes, Mocks, ScreenNames } from "enums";
 import { TapModel } from "models";
-import { MovementsScreen, SettingsScreen } from "./tab-screens";
+import { MovementsScreen, SettingsScreen, NotificationsScreen } from "./tab-screens";
 
 const HomeScreen = (props: { navigation: any }) => {
   const { navigation } = props;
-  const _taps = GenerateMocks<TapModel>(Mocks.TAP, 2);
+  const _taps = GenerateMocks<TapModel>(Mocks.TAP, 3);
 
   let colorScheme = useColorScheme();
   const styles = GlobalStyle(colorScheme, Platform.OS);
@@ -24,6 +24,7 @@ const HomeScreen = (props: { navigation: any }) => {
       <View style={styles.container}>
         {screenName === ScreenNames.MOVEMENTS && <MovementsScreen />}
         {screenName === ScreenNames.SETTINGS && <SettingsScreen />}
+        {screenName === ScreenNames.NOTIFICATIONS && <NotificationsScreen />}
       </View>
       <Tapbar
         taps={_taps}

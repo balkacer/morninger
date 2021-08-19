@@ -7,7 +7,7 @@ export default class MovementModel {
     type: number = 0;
     date: string = "";
 
-    constructor(movement: { amount: number, category: string, type: number, date: string }) {
+    constructor(movement: { amount: number, category: MovementCategories, type: number, date: string }) {
         Object.assign(this, movement);
     }
 }

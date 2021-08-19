@@ -1,5 +1,5 @@
 import * as SQLite from 'expo-sqlite';
-const db = SQLite.openDatabase('db.db_test_5');
+const db = SQLite.openDatabase('db.db_test_7');
 
 class DatabaseResponse<T> {
     code: string;
@@ -62,7 +62,8 @@ const Database = {
                 name: "movement_categories",
                 columns: [
                     "id INTEGER PRIMARY KEY AUTOINCREMENT",
-                    "name TEXT NOT NULL UNIQUE"
+                    "name TEXT NOT NULL UNIQUE",
+                    "icon TEXT NOT NULL"
                 ]
             },
             {
@@ -81,10 +82,34 @@ const Database = {
         insertInitialData([
             ['movement_types',['name'],["'input'"]],
             ['movement_types',['name'],["'output'"]],
-            ['movement_categories',['name'],["'comida'"]],
-            ['movement_categories',['name'],["'viaje'"]],
-            ['movement_categories',['name'],["'ropa'"]],
-            ['movement_categories',['name'],["'carro'"]]]);
+            ['movement_categories',['name','icon'],["'Food'","'fast-food'"]],
+            ['movement_categories',['name','icon'],["'Games'","'game-controller'"]],
+            ['movement_categories',['name','icon'],["'Gifts', 'gift'"]],
+            ['movement_categories',['name','icon'],["'Travels'","'location'"]],
+            ['movement_categories',['name','icon'],["'Movies'","'film'"]],
+            ['movement_categories',['name','icon'],["'Tools'","'construct'"]],
+            ['movement_categories',['name','icon'],["'Art'","'color-palette'"]],
+            ['movement_categories',['name','icon'],["'Shopping'","'cart'"]],
+            ['movement_categories',['name','icon'],["'Car'","'car'"]],
+            ['movement_categories',['name','icon'],["'Business'","'business'"]],
+            ['movement_categories',['name','icon'],["'Gym'","'barbell'"]],
+            ['movement_categories',['name','icon'],["'Flight'","'airplane'"]],
+            ['movement_categories',['name','icon'],["'Card'","'card'"]],
+            ['movement_categories',['name','icon'],["'Cash'","'cash'"]],
+            ['movement_categories',['name','icon'],["'Yard'","'flower'"]],
+            ['movement_categories',['name','icon'],["'Love'","'heart'"]],
+            ['movement_categories',['name','icon'],["'Laptop'","'laptop'"]],
+            ['movement_categories',['name','icon'],["'Boock'","'library'"]],
+            ['movement_categories',['name','icon'],["'Medic'","'medkit'"]],
+            ['movement_categories',['name','icon'],["'Pet'","'paw'"]],
+            ['movement_categories',['name','icon'],["'Pizza'","'pizza'"]],
+            ['movement_categories',['name','icon'],["'Clothes'","'shirt'"]],
+            ['movement_categories',['name','icon'],["'Wallet'","'wallet'"]],
+            ['movement_categories',['name','icon'],["'Camera'","'ios-camera'"]],
+            ['movement_categories',['name','icon'],["'Restaurant'","'ios-restaurant'"]],
+            ['movement_categories',['name','icon'],["'Nutrition'","'md-nutrition'"]],
+            ['movement_categories',['name','icon'],["'Ideas'","'bulb'"]]
+        ]);
     },
     select: async <T>(table: string, columns: string[] = [], condition: string = ""): Promise<DatabaseResponse<T[]>> => {
             return new Promise((resolve, rejected) => {

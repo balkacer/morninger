@@ -13,14 +13,15 @@ const instances = {
     movement: (i: number) => ({
         amount: i * Math.random() * 10 + 1,
         type: MovementTypes[i % 2 == 0 || i % 5 == 0 ? "INPUT" : "OUTPUT"],
-        category: MovementCategories.UNDEFINED + 1
+        category: i
     }) as MovementModel,
     tap: (i: number) => ({
         icon: [
-            "settings", 
+            "settings",
+            "ios-swap-vertical",
             "notifications"
         ][i],
-        screen: ScreenNames[i === 0 ? "SETTINGS" : "MOVEMENTS"],
+        screen: ScreenNames[i === 0 ? "SETTINGS" : i === 1 ? "MOVEMENTS" : "NOTIFICATIONS"],
         isActive: !(i)
     }) as TapModel
 }
