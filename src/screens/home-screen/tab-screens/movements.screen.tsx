@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Incoming } from "components";
 import { Picker } from "@react-native-picker/picker";
-import { USD } from "@dinero.js/currencies";
-import { dinero, add } from "dinero.js";
+import Moment from "moment";
 import Theme from "theme";
 import {
   FlatList,
@@ -19,7 +18,6 @@ import { useColorScheme } from "react-native-appearance";
 import GlobalStyle from "styles";
 import {
   IconTypes,
-  Mocks,
   MovementCategories,
   MovementTypes,
   ScreenNames,
@@ -29,6 +27,7 @@ import Database from "database";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 
 function MovementsScreen() {
+  Moment.locale("en");
   let colorScheme = useColorScheme();
   const styles = GlobalStyle(colorScheme, Platform.OS);
   const theme = Theme(colorScheme);
@@ -70,6 +69,7 @@ function MovementsScreen() {
 
   const categiriesList = categories?.map((cat) => (
     <Picker.Item
+      color={theme.colors.text}
       style={{ fontSize: 18 }}
       key={cat.id}
       label={cat.name}
@@ -142,7 +142,7 @@ function MovementsScreen() {
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "rgba(0,0,0,.35)",
+            backgroundColor: theme.colors.modalBackground,
             width: "100%",
             alignSelf: "center",
           }}
@@ -210,11 +210,12 @@ function MovementsScreen() {
                     fontSize: 18,
                     marginBottom: 20,
                     backgroundColor: theme.colors.card,
+                    color: theme.colors.text,
                   }}
                   keyboardType="numeric"
                   placeholderTextColor={theme.colors.placeholder}
                   placeholder="200.00"
-                ></TextInput>
+                />
                 <TouchableOpacity
                   style={{
                     width: 50,
@@ -236,7 +237,7 @@ function MovementsScreen() {
                 >
                   <Icon
                     size={18}
-                    color={theme.colors.background}
+                    color={theme.colors.iconsText}
                     name={newMovement.type === 1 ? "arrow-up" : "arrow-down"}
                     type={IconTypes.IONICON}
                   />
@@ -288,7 +289,7 @@ function MovementsScreen() {
                 }}
                 onPress={() => insertNewMovement()}
               >
-                <Text style={{ color: theme.colors.background, fontSize: 18 }}>
+                <Text style={{ color: theme.colors.iconsText, fontSize: 18 }}>
                   Save
                 </Text>
               </TouchableOpacity>
@@ -322,11 +323,7 @@ function MovementsScreen() {
             }}
             onPress={() => toggleModal()}
           >
-            <Icon
-              type="ionicon"
-              name="md-add"
-              color={theme.colors.background}
-            />
+            <Icon type="ionicon" name="md-add" color={theme.colors.iconsText} />
           </TouchableOpacity>
         </View>
       </View>
@@ -358,19 +355,19 @@ function MovementsScreen() {
       </View>
       <View
         style={{
-          paddingHorizontal: 0,
+          paddingHorizontal: 10,
           flexDirection: "row",
           justifyContent: "space-evenly",
           paddingVertical: 20,
           backgroundColor: theme.colors.card,
-          marginHorizontal: 20,
+          marginHorizontal: 40,
           marginVertical: 20,
           borderRadius: 15,
         }}
       >
         <Incoming
           isInput={true}
-          title="Total Incoming"
+          title="Total Income"
           value={`$${numberFormated(totalIncoming.toFixed(2))}`}
         ></Incoming>
         <Incoming
@@ -379,13 +376,6 @@ function MovementsScreen() {
           value={`$${numberFormated(totalExpenses.toFixed(2))}`}
         ></Incoming>
       </View>
-      {/* <View
-        style={{
-          backgroundColor: theme.colors.placeholder,
-          height: 1,
-          width: "80%",
-        }}
-      ></View> */}
       <FlatList
         style={{
           width: "100%",
@@ -403,32 +393,40 @@ function MovementsScreen() {
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  alignItems: 'center',
+                  alignItems: "center",
                   marginVertical: 5,
                   padding: 15,
                   backgroundColor: theme.colors.card,
                 }}
               >
-                <View style={{ flexDirection: "row", alignItems: 'center' }}>
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Icon
                     type={IconTypes.IONICON}
                     name={
                       categories?.find((c) => c.id == category)?.icon as string
                     }
-                    color={theme.colors.text}
-                    style={{ marginRight: 10, alignSelf: 'center' }}
+                    color={theme.colors.primary}
+                    style={{
+                      marginRight: 10,
+                      alignSelf: "center",
+                    }}
                   />
                   <View>
-                  <Text
-                    style={{
-                      color: theme.colors.title,
-                      fontSize: 20,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {categories?.find((c) => c.id == category)?.name as string}
-                  </Text>
-                  <Text>{new Date(date).toLocaleDateString()}</Text>
+                    <Text
+                      style={{
+                        color: theme.colors.title,
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {
+                        categories?.find((c) => c.id == category)
+                          ?.name as string
+                      }
+                    </Text>
+                    <Text style={{ color: theme.colors.secondaryText }}>
+                      {Moment(date).format("MMMM D")}
+                    </Text>
                   </View>
                 </View>
                 <Text

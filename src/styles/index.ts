@@ -70,22 +70,6 @@ const GlobalStyle = (schema: ColorSchemeName = "dark", platform = "android") => 
             fontWeight: "bold",
             marginBottom: 4,
         },
-        messageText: {
-            color: theme.colors.secondaryText,
-            fontSize: 12,
-            marginTop: 4
-        },
-        avatarNormal: {
-            backgroundColor: theme.colors.background,
-            borderRadius: theme.avatars.normal.r,
-            maxHeight: theme.avatars.normal.h,
-            minHeight: theme.avatars.normal.h,
-            maxWidth: theme.avatars.normal.w,
-            minWidth: theme.avatars.normal.w
-        },
-        tap: {
-
-        },
         tapbar: {
             height: 64,
             width: "100%",

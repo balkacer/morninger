@@ -14,11 +14,11 @@ export default function Incoming(props: {
   let colorScheme = useColorScheme();
   const theme = Theme(colorScheme);
   return (
-    <View style={{ display: "flex", flexDirection: isInput ? "row" : "row-reverse", width: "50%", alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{flexDirection: isInput ? "row" : "row-reverse", width: "50%", alignItems: 'center', justifyContent: 'center' }}>
       <Icon
         name={isInput ? "arrow-up" : "arrow-down"}
         type={IconTypes.IONICON}
-        color={theme.colors.background}
+        color={theme.colors.iconsText}
         style={{
           backgroundColor: isInput ? theme.colors.movementInput : theme.colors.movementOutput,
           borderRadius: 10,
@@ -28,7 +28,7 @@ export default function Incoming(props: {
           margin: 5
         }}
       />
-      <View style={{ display: "flex", flexDirection: "column", margin: 5}}>
+      <View style={{flexDirection: "column", margin: 5, justifyContent: 'space-between', height: 35}}>
         <Text style={{ fontSize: 14, color: theme.colors.secondaryText }}>
          {title}
         </Text>

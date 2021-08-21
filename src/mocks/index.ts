@@ -17,11 +17,10 @@ const instances = {
     }) as MovementModel,
     tap: (i: number) => ({
         icon: [
-            "settings",
             "ios-swap-vertical",
-            "notifications"
+            "analytics"
         ][i],
-        screen: ScreenNames[i === 0 ? "SETTINGS" : i === 1 ? "MOVEMENTS" : "NOTIFICATIONS"],
+        screen: ScreenNames[i === 0 ? "MOVEMENTS" : "ANALYTICS"],
         isActive: !(i)
     }) as TapModel
 }

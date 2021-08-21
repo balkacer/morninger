@@ -1,5 +1,5 @@
 import * as SQLite from 'expo-sqlite';
-const db = SQLite.openDatabase('db.db_test_7');
+const db = SQLite.openDatabase('db.db_moniger_pro');
 
 class DatabaseResponse<T> {
     code: string;
